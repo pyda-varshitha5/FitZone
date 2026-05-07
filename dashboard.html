@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo-area">
+        <h2>FitZone</h2>
+        <p>Gym Management</p>
+    </div>
+
+    <ul>
+
+        <li onclick="showSection('dashboard')">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+
+        <li onclick="showSection('register')">
+            <i class="fa-solid fa-user-plus"></i> Register Member
+        </li>
+
+        <li onclick="showSection('progress')">
+            <i class="fa-solid fa-chart-line"></i> Progress
+        </li>
+
+        <li onclick="showSection('diet')">
+            <i class="fa-solid fa-utensils"></i> Diet Plan
+        </li>
+
+        <li onclick="showSection('trainer')">
+            <i class="fa-solid fa-dumbbell"></i> Trainers
+        </li>
+
+        <li onclick="showSection('goals')">
+            <i class="fa-solid fa-bullseye"></i> Fitness Goals
+        </li>
+        
+        <li onclick="showSection('attendance')">
+<i class="fa-solid fa-calendar-check"></i> Attendance
+</li>
+
+<li onclick="showSection('payments')">
+<i class="fa-solid fa-credit-card"></i> Payments
+</li>
+
+<li onclick="showSection('water')">
+<i class="fa-solid fa-glass-water"></i> Water Intake
+</li>
+
+<li onclick="showSection('schedule')">
+<i class="fa-solid fa-clock"></i> Workout Schedule
+</li>
+
+<li onclick="showSection('notifications')">
+<i class="fa-solid fa-bell"></i> Notifications
+</li>
+        <li onclick="showSection('bmi')">
+            <i class="fa-solid fa-heart-pulse"></i> BMI Guide
+        </li>
+
+        <li onclick="showSection('plans')">
+            <i class="fa-solid fa-crown"></i> Membership Plans
+        </li>
+
+        <li onclick="showSection('services')">
+            <i class="fa-solid fa-briefcase"></i> Our Services
+        </li>
+
+        <li onclick="showSection('contact')">
+            <i class="fa-solid fa-headset"></i> Contact / Help
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <!-- Topbar -->
+
+    <div class="topbar">
+
+        <div class="search-box">
+            <input type="text" placeholder="Search Members...">
+        </div>
+
+        <div class="profile-box">
+
+            <img src="image folder/trainer.jpg">
+
+            <div>
+                <h4>Admin</h4>
+                <p>FitZone Manager</p>
+            </div>
+
+        </div>
+        <button onclick="toggleTheme()"
+class="theme-btn">
+
+<i class="fa-solid fa-moon"></i>
+<h3 id="clock"></h3>
+
+</button>
+    <button onclick="logout()"
+class="logout-btn">
+Logout
+</button>
+    </div>
+
+    <!-- Dashboard -->
+
+    <section id="dashboard" class="section active">
+
+        <h1>Dashboard Overview</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa-solid fa-users"></i>
+                <h3>Total Members</h3>
+                <p>320</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-dumbbell"></i>
+                <h3>Active Trainers</h3>
+                <p>12</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-fire"></i>
+                <h3>Calories Burned</h3>
+                <p>1250 kcal</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-award"></i>
+                <h3>Success Rate</h3>
+                <p>89%</p>
+            </div>
+
+        </div>
+
+
+        <button onclick="exportPDF()">
+
+Export Members PDF
+
+</button>
+        <!-- Member Table -->
+
+        <div class="member-table">
+
+            <h2>Registered Members</h2>
+
+            <table>
+
+                <tr>
+                    <th>Gym ID</th>
+                    <th>Name</th>
+                    <th>Trainer</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>GYM101</td>
+                    <td>Rahul</td>
+                    <td>John</td>
+                    <td>Active</td>
+                </tr>
+
+                <tr>
+                    <td>GYM102</td>
+                    <td>Priya</td>
+                    <td>David</td>
+                    <td>Active</td>
+                </tr>
+
+                <tr>
+                    <td>GYM103</td>
+                    <td>Arjun</td>
+                    <td>Steve</td>
+                    <td>Expired</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Chart -->
+
+        <div class="chart-card">
+
+            <h2>Monthly Fitness Progress</h2>
+
+            <div class="chart-bars">
+
+                <div class="bar" style="height:60%">
+                    <span>Jan</span>
+                </div>
+
+                <div class="bar" style="height:85%">
+                    <span>Feb</span>
+                </div>
+
+                <div class="bar" style="height:75%">
+                    <span>Mar</span>
+                </div>
+
+                <div class="bar" style="height:95%">
+                    <span>Apr</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Register -->
+
+    <section id="register" class="section">
+
+        <h1>Register Member</h1>
+
+        <form class="register-form"
+onsubmit="addMember(event)">
+
+            <input type="text"
+id="memberName"
+placeholder="Member Name">
+
+<input type="text"
+id="memberId"
+placeholder="Gym ID">
+
+<input type="number"
+id="memberAge"
+placeholder="Age">
+
+<input type="text"
+id="memberTrainer"
+placeholder="Assigned Trainer">
+
+<input type="text"
+id="memberPlan"
+placeholder="Membership Plan">
+
+            <button type="submit">
+                Register Member
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Progress -->
+
+    <section id="progress" class="section">
+
+    <h1>Check Member Progress</h1>
+
+    <input type="text"
+    id="progressId"
+    placeholder="Enter Gym ID">
+
+    <button onclick="searchProgress()">
+        Search
+    </button>
+
+    <div class="info-card"
+    id="progressResult">
+
+        Enter Gym ID to view progress
+
+    </div>
+    <div class="circle-wrap">
+
+<div class="circle">
+
+<h2>75%</h2>
+
+</div>
+
+<p>Workout Completion</p>
+
+</div>
+
+</section>
+
+    <!-- Diet -->
+
+    <section id="diet" class="section">
+
+    <h1>Diet Plan</h1>
+
+    <input type="text"
+    id="dietId"
+    placeholder="Enter Gym ID">
+
+    <button onclick="searchDiet()">
+        Search
+    </button>
+
+    <div class="info-card"
+    id="dietResult">
+
+        Enter Gym ID to view diet plan
+
+    </div>
+
+</section>
+
+    <!-- Trainer -->
+
+    <section id="trainer" class="section">
+
+    <h1>Assigned Trainer</h1>
+
+    <input type="text"
+    id="trainerId"
+    placeholder="Enter Gym ID">
+
+    <button onclick="searchTrainer()">
+        Search
+    </button>
+
+    <div class="info-card"
+    id="trainerResult">
+
+        Enter Gym ID to view trainer
+
+    </div>
+
+</section>
+
+    <!-- Goals -->
+
+    <section id="goals" class="section">
+
+        <h1>Fitness Goals</h1>
+
+        <input type="text" placeholder="Enter Gym ID">
+
+        <button>Search</button>
+
+        <div class="info-card">
+
+            <h3>Weight Loss Goal</h3>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <p>Target Completion: 75%</p>
+
+        </div>
+
+    </section>
+
+
+    <section id="attendance" class="section">
+
+<h1>Attendance Tracker</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Present Days</h3>
+<p>22</p>
+</div>
+
+<div class="card">
+<h3>Absent Days</h3>
+<p>3</p>
+</div>
+
+<div class="card">
+<h3>Attendance</h3>
+<p>88%</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="payments" class="section">
+
+<h1>Membership Payments</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Current Plan</h3>
+<p>Premium</p>
+</div>
+
+<div class="card">
+<h3>Payment Status</h3>
+<p>Paid</p>
+</div>
+
+<div class="card">
+<h3>Expiry Date</h3>
+<p>12 Aug 2026</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="water" class="section">
+
+<h1>Water Intake Tracker</h1>
+
+<div class="info-card">
+
+<h3>Daily Goal</h3>
+
+<div class="progress-bar">
+
+<div class="progress"
+style="width:70%">
+</div>
+
+</div>
+
+<p>2.1L / 3L Completed</p>
+
+</div>
+
+</section>
+
+<section id="schedule" class="section">
+
+<h1>Workout Schedule</h1>
+
+<div class="member-table">
+
+<table>
+    
+
+<tbody id="memberTable">
+
+<tr>
+<th>Day</th>
+<th>Workout</th>
+</tr>
+
+<tr>
+<td>Monday</td>
+<td>Chest Workout</td>
+</tr>
+
+<tr>
+<td>Tuesday</td>
+<td>Back Workout</td>
+</tr>
+
+<tr>
+<td>Wednesday</td>
+<td>Cardio</td>
+</tr>
+
+<tr>
+<td>Thursday</td>
+<td>Leg Workout</td>
+</tr>
+
+<tr>
+<td>Friday</td>
+<td>Shoulders</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section id="notifications" class="section">
+
+<h1>Notifications</h1>
+
+<div class="info-card">
+
+<p>✅ Membership renewed successfully</p>
+
+<br>
+
+<p>🔥 Today's workout reminder at 6 PM</p>
+
+<br>
+
+<p>⚠ Payment due in 5 days</p>
+
+<br>
+
+<p>🏋 Trainer assigned successfully</p>
+
+</div>
+
+</section>
+    <!-- BMI -->
+
+    <section id="bmi" class="section">
+
+        <h1>BMI Guide</h1>
+
+        <div class="info-card">
+
+            <h3>Under BMI</h3>
+
+            <p>
+                Increase calorie intake, protein-rich foods,
+                and strength workouts.
+            </p>
+
+            <br>
+
+            <h3>Over BMI</h3>
+
+            <p>
+                Focus on cardio workouts, calorie deficit diet,
+                and regular exercise.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Plans -->
+
+    <section id="plans" class="section">
+
+        <h1>Membership Plans</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Basic</h3>
+                <p>₹999</p>
+            </div>
+
+            <div class="card">
+                <h3>Premium</h3>
+                <p>₹4999</p>
+            </div>
+
+            <div class="card">
+                <h3>Elite</h3>
+                <p>₹8999</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Services -->
+
+    <section id="services" class="section">
+
+        <h1>Our Services</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Weight Training</h3>
+            </div>
+
+            <div class="card">
+                <h3>Cardio Training</h3>
+            </div>
+
+            <div class="card">
+                <h3>Yoga Sessions</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Contact -->
+
+    <section id="contact" class="section">
+
+        <h1>Contact / Help</h1>
+
+        <div class="info-card">
+
+            <p>Email: fitzone@gmail.com</p>
+
+            <p>Phone: +91 9876543210</p>
+
+            <p>Address: Hyderabad, India</p>
+
+        </div>
+
+    </section>
+
+</div>
+<div class="toast"
+id="toast">
+
+Member Registered Successfully
+
+</div>
+
+<!-- Modal -->
+
+<div class="modal"
+id="memberModal">
+
+<div class="modal-content">
+
+<span class="close"
+onclick="closeModal()">
+&times;
+</span>
+
+<h2>Member Profile</h2>
+
+<div id="modalData">
+
+</div>
+
+</div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
